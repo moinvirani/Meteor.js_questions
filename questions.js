@@ -9,7 +9,9 @@ var getCurrentEmail = function () {
 
 if (Meteor.isClient) {
   Template.questions.allQuestions = function () {
-    return Questions.find();
+    return Questions.find({}, {
+      sort: {score: -1}  //sorting in descending order
+    });
   };
 
 // Adding validation so only users logged in can post questions

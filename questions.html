@@ -4,15 +4,17 @@
 
 <body>
   {{loginButtons}}
-  {{> questions}}
+  <div class="container-fluid">
+     {{> questions}}
+  </div>
 </body>
 
 <template name="questions">
   {{#if userId}}
   <h1>Ask a question</h1>
-  <form>
+  <form class="form-compact">
     <input type="text" id="questionText">
-    <input type="button" id="questionAsk" value="Ask">
+    <input type="button" id="questionAsk" class="btn"value="Ask">
   </form>
   {{/if}}
   {{#each allQuestions}}
