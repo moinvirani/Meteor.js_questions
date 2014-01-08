@@ -1,22 +1,16 @@
+// This is deliberately a global variable
 Questions = new Meteor.Collection('Questions');
 
-
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return Session.get('greeting') || "Welcome to questions.";
+  Template.questions.allQuestions = function () {
+    return Questions.find();
   };
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Template.questions.events({
+    "click #questionAsk": function (evnt, templ) {
+      var question = templ.find("#questionText").value;
+      Questions.insert({question: question, score: 1});
     }
   });
-}
 
-// if (Meteor.isServer) {
-//   Meteor.startup(function () {
-//     // code to run on server at startup
-//   });
-// }
+}

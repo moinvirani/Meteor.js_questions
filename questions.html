@@ -3,6 +3,7 @@
 </head>
 
 <body>
+  {{loginButtons}}
   {{> questions}}
 </body>
 
@@ -12,4 +13,10 @@
     <input type="text" id="questionText">
     <input type="button" id="questionAsk" value="Ask">
   </form>
+  {{#each allQuestions}}
+    <h3>
+      {{question}}
+      {{score}}
+    </h3>
+  {{/each}}
 </template>
