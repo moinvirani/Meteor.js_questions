@@ -44,7 +44,34 @@ Template.questions.showArrow = function () {
         $addToSet: {votes: Meteor.userId()} //look this up
       });
     }
-
   });
-
 }
+
+
+// removed package insecure, allow rules to add to the collection
+if (Meteor.isServer) {
+  Questions.allow({
+    insert: function (userId, doc) {
+       if (! _.isEqual(doc.votes, [userId])) {
+        return false;
+       }
+       if (!doc.email || !doc.question) {
+        return false;
+       }
+       if (doc.score != 1) {
+        return false;
+       }
+       return true;
+    },
+
+    update: function (userId, doc, fieldNames, modifier) {
+      return _.isEqual(modifier, {
+        $inc: {score: 1},
+        $addtoSet: {votes: Meteor.userId()}
+     });
+    }
+  });
+}
+
+
+
