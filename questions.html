@@ -19,6 +19,9 @@
     <h3>
       {{question}}
       {{score}}
+      {{#if showArrow}}
+      <a class="vote">&uarr;</a>
+      {{/if}}
     </h3>
     <p>{{email}}</p>
   {{/each}}
