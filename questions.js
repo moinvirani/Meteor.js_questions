@@ -12,6 +12,12 @@ if (Meteor.isClient) {
     return Questions.find();
   };
 
+// Adding validation so only users logged in can post questions
+Template.questions.userId = function () {
+  return Meteor.userId();
+},
+
+
   Template.questions.events({
     "click #questionAsk": function (evnt, templ) {
       var question = templ.find("#questionText").value;

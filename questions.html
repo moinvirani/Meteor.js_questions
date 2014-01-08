@@ -8,11 +8,13 @@
 </body>
 
 <template name="questions">
+  {{#if userId}}
   <h1>Ask a question</h1>
   <form>
     <input type="text" id="questionText">
     <input type="button" id="questionAsk" value="Ask">
   </form>
+  {{/if}}
   {{#each allQuestions}}
     <h3>
       {{question}}
